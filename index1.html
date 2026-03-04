@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prakash | Ultra Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:linear-gradient(135deg,#031712,#052f28);
+  color:#E8FFF8;
+  overflow-x:hidden;
+}
+
+/* Custom Cursor */
+.cursor{
+  width:20px;
+  height:20px;
+  border:2px solid #00F5A0;
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:0.1s;
+  z-index:9999;
+}
+
+.cursor-glow{
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle,rgba(0,255,170,0.15),transparent 60%);
+  position:fixed;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:-1;
+}
+
+/* Floating Orbs */
+.orb{
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(0,255,170,0.15),transparent 60%);
+  border-radius:50%;
+  animation:float 12s infinite alternate ease-in-out;
+}
+
+.orb2{
+  right:-200px;
+  bottom:-200px;
+  animation-delay:3s;
+}
+
+@keyframes float{
+  from{transform:translateY(0px);}
+  to{transform:translateY(60px);}
+}
+
+/* Navbar */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:30px 80px;
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,0.2);
+}
+
+nav h2{ color:#00F5A0; }
+
+nav a{
+  text-decoration:none;
+  color:#E8FFF8;
+  margin-left:30px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#00F5A0;
+}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:140px 20px;
+}
+
+.hero h1{
+  font-size:65px;
+  font-weight:800;
+  line-height:1.2;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#00F5A0,#00FFB2);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.typing{
+  margin-top:20px;
+  font-size:22px;
+  color:#8FBFB0;
+  height:30px;
+}
+
+/* Button */
+.btn{
+  margin-top:40px;
+  padding:15px 45px;
+  border-radius:50px;
+  border:1px solid #00F5A0;
+  background:transparent;
+  color:#00F5A0;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.btn:hover{
+  background:#00F5A0;
+  color:#031712;
+  box-shadow:0 0 40px #00F5A0;
+}
+
+/* Sections */
+section{
+  padding:120px 80px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{
+  margin-bottom:50px;
+  font-size:34px;
+}
+
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:40px;
+}
+
+/* Cards */
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(0,255,170,0.2);
+  border-radius:25px;
+  padding:40px;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.03);
+  box-shadow:0 0 40px rgba(0,255,170,0.3);
+}
+
+.card p{
+  color:#8FBFB0;
+  line-height:1.7;
+}
+
+/* Thought */
+.thought{
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+  font-size:24px;
+  line-height:1.8;
+  color:#8FBFB0;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:50px;
+  color:#8FBFB0;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+@media(max-width:768px){
+  nav{padding:20px 30px;}
+  section{padding:80px 30px;}
+  .hero h1{font-size:40px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-glow"></div>
+
+<div class="orb"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <h2>Prakash</h2>
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#insights">Insights</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>I Build <span class="gradient">Intelligent Systems</span></h1>
+  <div class="typing" id="typing"></div>
+  <button class="btn">Explore My Work</button>
+</div>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Banking Analytics</h3>
+      <p>High-performance financial dashboard with advanced risk modeling and live insights.</p>
+    </div>
+    <div class="card">
+      <h3>Investment Platform</h3>
+      <p>Portfolio tracking system designed for strategic long-term growth.</p>
+    </div>
+    <div class="card">
+      <h3>AI Insight Engine</h3>
+      <p>Data-driven system transforming complex metrics into actionable intelligence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="thought">
+  “Technology should feel powerful, intelligent, and beautifully simple.
+  I design systems that balance performance with human experience.”
+</section>
+
+<section id="insights">
+  <h2>Insights</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>The Future of Finance</h3>
+      <p>AI and UX are redefining digital banking experiences.</p>
+    </div>
+    <div class="card">
+      <h3>Simplicity is Strategy</h3>
+      <p>Minimal systems create maximum long-term impact.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="card">
+    <p>
+      I'm a software engineer combining analytical thinking with creative system design.
+      My focus is building scalable, intelligent digital products that inspire confidence.
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Prakash | Ultra Premium Experience 💚
+</footer>
+
+<script>
+/* Typing Effect */
+const texts=["Software Engineer.","Analytical Thinker.","System Designer.","Problem Solver."];
+let count=0;
+let index=0;
+let currentText="";
+let letter="";
+
+(function type(){
+  if(count===texts.length){count=0;}
+  currentText=texts[count];
+  letter=currentText.slice(0,++index);
+  document.getElementById("typing").textContent=letter;
+  if(letter.length===currentText.length){
+    setTimeout(()=>{index=0;count++;},1500);
+  }
+  setTimeout(type,100);
+})();
+
+/* Scroll Reveal */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("visible");
+    }
+  });
+});
+
+/* Custom Cursor */
+const cursor=document.querySelector(".cursor");
+const glow=document.querySelector(".cursor-glow");
+
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+  glow.style.left=e.clientX+"px";
+  glow.style.top=e.clientY+"px";
+});
+</script>
+
+</body>
+</html>
