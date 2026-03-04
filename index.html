@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prakash Sharma | Ultra Green Academic Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg1:#021d17;
+--bg2:#053d33;
+--accent:#00ffb2;
+--soft:#8fffe0;
+--text:#eafff7;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,var(--bg1),var(--bg2));
+color:var(--text);
+overflow-x:hidden;
+}
+
+/* Floating glow */
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle,rgba(0,255,178,0.15),transparent 60%);
+top:-200px;
+left:-200px;
+z-index:-1;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:radial-gradient(circle,rgba(0,255,178,0.1),transparent 60%);
+bottom:-200px;
+right:-200px;
+z-index:-1;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:20px;
+position:sticky;
+top:0;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(20px);
+z-index:1000;
+}
+
+nav a{
+color:var(--text);
+text-decoration:none;
+transition:.3s;
+}
+
+nav a:hover{
+color:var(--accent);
+}
+
+/* HERO */
+header{
+text-align:center;
+padding:140px 20px;
+}
+
+header h1{
+font-size:60px;
+font-weight:800;
+background:linear-gradient(90deg,#00ffb2,#00ffaa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+header p{
+margin-top:20px;
+color:var(--soft);
+}
+
+/* SECTION */
+section{
+padding:120px 10%;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+h2{
+margin-bottom:40px;
+font-size:32px;
+}
+
+/* CARD */
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border:1px solid rgba(0,255,178,0.2);
+padding:35px;
+border-radius:20px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.02);
+box-shadow:0 0 40px rgba(0,255,178,0.3);
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+padding:14px 35px;
+border-radius:50px;
+border:1px solid var(--accent);
+color:var(--accent);
+text-decoration:none;
+transition:.4s;
+margin-top:20px;
+}
+
+.btn:hover{
+background:var(--accent);
+color:#021d17;
+box-shadow:0 0 30px var(--accent);
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:#062f28;
+padding:40px;
+border-radius:20px;
+max-width:700px;
+color:var(--soft);
+}
+
+.close{
+float:right;
+cursor:pointer;
+color:var(--accent);
+font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:40px;
+border-top:1px solid rgba(255,255,255,0.1);
+color:var(--soft);
+}
+
+/* Responsive */
+@media(max-width:768px){
+header h1{font-size:40px;}
+section{padding:80px 5%;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#about">About</a>
+<a href="#learning">Learning</a>
+<a href="#projects">Projects</a>
+<a href="#thoughts">Thoughts</a>
+<a href="#insights">Insights</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<header>
+<h1>Prakash Sharma</h1>
+<p>Data Science Learner | Research Thinker | Analytical Explorer</p>
+</header>
+
+<section id="about">
+<h2>Academic Identity</h2>
+<div class="card">
+I am an intellectually disciplined undergraduate focused on data science, structured thinking, research methodology and long-term knowledge development.
+</div>
+</section>
+
+<section id="learning">
+<h2>Learning Journey</h2>
+<div class="card">
+Python • Statistics • Linear Regression • Research Writing • Analytical Reasoning • Teaching & Leadership
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects & Research</h2>
+<div class="grid">
+<div class="card">Linear Regression with Train-Test Split</div>
+<div class="card">Exploratory Data Analysis</div>
+<div class="card">Statistical Modeling Systems</div>
+</div>
+</section>
+
+<section id="thoughts">
+<h2>Thought Philosophy</h2>
+<div class="grid">
+<div class="card" onclick="openModal('article1')">Education Beyond Syllabus</div>
+<div class="card" onclick="openModal('article2')">Discipline & Intellectual Growth</div>
+</div>
+</section>
+
+<section id="insights">
+<h2>Insights Portal</h2>
+<div class="grid">
+<div class="card" onclick="openModal('insight1')">Data Visualization Case Study</div>
+<div class="card" onclick="openModal('insight2')">Research-Based Analysis Framework</div>
+</div>
+</section>
+
+<section>
+<h2>Talks & Leadership</h2>
+<div class="card">
+Guiding students in clarity, routine building, structured thought systems and concept mastery.
+</div>
+</section>
+
+<section>
+<h2>Achievements</h2>
+<div class="card">
+Python Certification • Academic Excellence • Research Workshops
+</div>
+</section>
+
+<section>
+<h2>Reading Library</h2>
+<div class="card">
+Books on productivity, philosophy, research thinking and analytical mastery.
+</div>
+</section>
+
+<section>
+<h2>Resume</h2>
+<a href="#" class="btn">Download CV</a>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="card">
+Email: yourmail@example.com <br>
+LinkedIn: linkedin.com/in/yourprofile <br>
+GitHub: github.com/yourusername
+</div>
+</section>
+
+<footer>
+© 2026 Prakash Sharma | Ultra Green Academic Presence 💚
+</footer>
+
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">X</span>
+<div id="modal-text"></div>
+</div>
+</div>
+
+<script>
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("visible");
+}
+});
+});
+
+function openModal(id){
+const content={
+article1:"True education expands curiosity beyond classroom boundaries.",
+article2:"Discipline builds intellectual power and long-term mastery.",
+insight1:"Case study demonstrating structured data transformation into insight.",
+insight2:"Framework combining statistical logic with research precision."
+};
+document.getElementById("modal-text").innerHTML=content[id];
+document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
