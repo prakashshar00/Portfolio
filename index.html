@@ -346,21 +346,32 @@ I think deeply, act deliberately, and aspire purposefully.
 
 And yes — at my core, I am from Nepal, the land of the Middle Path, where balance is not just philosophy, but identity.`;
 
+
 let i = 0;
 let speed = 25;
+let sound = document.getElementById("typeSound");
 
 function typeWriter(){
+
+if(i === 0){
+sound.loop = true;
+sound.play();
+}
+
 if(i < text.length){
 
 document.getElementById("typing").innerHTML += text.charAt(i);
 
-let sound=document.getElementById("typeSound");
-sound.currentTime=0;
-sound.play();
-
 i++;
-setTimeout(typeWriter,speed);
+setTimeout(typeWriter, speed);
+
+}else{
+
+sound.pause();
+sound.currentTime = 0;
+
 }
+
 }
 
 typeWriter();
@@ -370,4 +381,5 @@ typeWriter();
 </body>
 </html>
 ```
+
 
