@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +30,7 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* Floating glow */
+/* glow */
 body::before{
 content:"";
 position:fixed;
@@ -96,7 +95,6 @@ margin-top:20px;
 color:var(--soft);
 }
 
-/* typing effect */
 #typing{
 margin-top:20px;
 color:var(--soft);
@@ -140,6 +138,7 @@ border:1px solid rgba(0,255,178,0.2);
 padding:35px;
 border-radius:20px;
 transition:.4s;
+cursor:pointer;
 }
 
 .card:hover{
@@ -147,29 +146,10 @@ transform:translateY(-10px) scale(1.02);
 box-shadow:0 0 40px rgba(0,255,178,0.3);
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
-}
-
-/* BUTTON */
-.btn{
-display:inline-block;
-padding:14px 35px;
-border-radius:50px;
-border:1px solid var(--accent);
-color:var(--accent);
-text-decoration:none;
-transition:.4s;
-margin-top:20px;
-}
-
-.btn:hover{
-background:var(--accent);
-color:#021d17;
-box-shadow:0 0 30px var(--accent);
 }
 
 /* MODAL */
@@ -208,7 +188,6 @@ border-top:1px solid rgba(255,255,255,0.1);
 color:var(--soft);
 }
 
-/* Responsive */
 @media(max-width:768px){
 header h1{font-size:40px;}
 section{padding:80px 5%;}
@@ -232,10 +211,7 @@ section{padding:80px 5%;}
 <header>
 <h1>Prakash Sharma</h1>
 <p>Data Science Learner | Research Thinker | Analytical Explorer</p>
-
 <p id="typing"></p>
-
-<audio id="typeSound" src="keyboard.mp3"></audio>
 </header>
 
 <section id="about">
@@ -277,30 +253,16 @@ Python • Statistics • Linear Regression • Research Writing • Analytical 
 </div>
 </section>
 
-
-
-
-<!-- Section -->
 <section id="integral-notes">
 <h2>Notes and Resources</h2>
 
 <div class="grid">
-
-<div class="card">
-<a href="#" onclick="openModal('note1')">Class 11 and 12</a>
+<div class="card" onclick="openModal('note1')">Class 11 and 12</div>
+<div class="card" onclick="openModal('note2')">Secondary Level</div>
+<div class="card" onclick="openModal('note3')">Bachelor Level</div>
 </div>
 
-<div class="card">
-<a href="#" onclick="openModal('note2')">Secondary level</a>
-</div>
-
-<div class="card">
-<a href="#" onclick="openModal('note3')">Bachelor level</a>
-</div>
-
-</div>
 </section>
-
 
 <section id="contact">
 <h2>Contact</h2>
@@ -334,14 +296,19 @@ sec.classList.add("visible");
 });
 });
 
-/* modal system */
+/* modal */
 function openModal(id){
 const content={
 article1:"True education expands curiosity beyond classroom boundaries.",
 article2:"Discipline builds intellectual power and long-term mastery.",
 insight1:"Case study demonstrating structured data transformation into insight.",
-insight2:"Framework combining statistical logic with research precision."
+insight2:"Framework combining statistical logic with research precision.",
+
+note1:"Class 11 and 12 Mathematics, Physics and Statistics notes will be available here.",
+note2:"Secondary level study resources and exam preparation materials.",
+note3:"Bachelor level notes including Data Science, Statistics and Research materials."
 };
+
 document.getElementById("modal-text").innerHTML=content[id];
 document.getElementById("modal").style.display="flex";
 }
@@ -350,70 +317,7 @@ function closeModal(){
 document.getElementById("modal").style.display="none";
 }
 
-/* typing effect */
-const text = `Hello — I’m Prakash: a full-time learner, a relentless questioner, and a firm believer that ideas, when refined by data and guided by ethics, can change societies.
-
-By academic pursuit and personal conviction, I study data science — not merely to understand numbers, but to uncover the patterns beneath human behavior, policy, and progress.
-
-Yet my intellectual home extends beyond datasets. I find equal fascination in mathematics and physics, diplomacy and philosophy, leadership and governance.
-
-I am drawn to both Eastern wisdom and Western reasoning, always searching for balance between logic and meaning.
-
-My curiosity rarely rests. It travels through psychology and anthropology, explores design and aesthetics, reflects on ethics, and occasionally finds discipline in sports and bodybuilding.
-
-I am interested not just in how systems work — but why people think, choose, and act the way they do.
-
-I admire refinement — whether in thoughtful dialogue, elegant writing, well-crafted attire, fountain pens that glide with intention, or fragrances that tell quiet stories.
-
-To me, details matter; they reveal character.
-
-I believe in evidence, in integrity, and in the quiet power of preparation.
-
-I think deeply, act deliberately, and aspire purposefully.
-
-And yes — at my core, I am from Nepal, the land of the Middle Path, where balance is not just philosophy, but identity.`;
-
-
-let i = 0;
-let speed = 25;
-let sound = document.getElementById("typeSound");
-
-function typeWriter(){
-
-if(i === 0){
-sound.loop = true;
-sound.play();
-}
-
-if(i < text.length){
-
-document.getElementById("typing").innerHTML += text.charAt(i);
-
-i++;
-setTimeout(typeWriter, speed);
-
-}else{
-
-sound.pause();
-sound.currentTime = 0;
-
-}
-
-}
-
-typeWriter();
-
 </script>
 
 </body>
 </html>
-```
-
-
-
-
-
-
-
-
-
