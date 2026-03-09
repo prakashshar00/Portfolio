@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integral Minds Notes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--primary:#00ffb2;
+--primary-light:#8fffe0;
+--bg-dark:#0b0c10;
+--bg-light:#f0f0f0;
+--text-dark:#e0e0e0;
+--text-light:#111;
+--card-dark:rgba(255,255,255,0.05);
+--card-light:rgba(0,0,0,0.05);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+transition:0.5s;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+overflow-x:hidden;
+}
+
+/* Sidebar */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(15px);
+padding:40px 20px;
+display:flex;
+flex-direction:column;
+gap:20px;
+transition:0.4s;
+}
+
+.sidebar h2{
+font-size:22px;
+color:var(--primary);
+}
+
+.sidebar a{
+text-decoration:none;
+color:white;
+padding:10px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:var(--primary);
+color:#0b0c10;
+}
+
+.toggle-btn{
+position:absolute;
+top:20px;
+right:-50px;
+background:var(--primary);
+color:#0b0c10;
+padding:10px 15px;
+cursor:pointer;
+border-radius:10px;
+font-weight:bold;
+}
+
+/* Main content */
+
+.main{
+margin-left:270px;
+padding:50px 5%;
+transition:0.5s;
+}
+
+/* Hero typing */
+
+.hero{
+text-align:center;
+margin-bottom:50px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+#typing{
+font-size:20px;
+color:var(--primary-light);
+min-height:30px;
+margin-top:10px;
+}
+
+/* Cards Grid */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.card{
+background:var(--card-dark);
+backdrop-filter:blur(15px);
+border-radius:20px;
+padding:40px;
+text-align:center;
+font-weight:bold;
+font-size:18px;
+cursor:pointer;
+transition:0.5s;
+background:linear-gradient(135deg,#00ffb2,#00ffaa);
+color:#0b0c10;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 15px 40px rgba(0,255,178,0.4);
+animation:gradientMove 3s infinite linear;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Dark/Light mode */
+
+body.light-mode{
+background:linear-gradient(135deg,#f0f0f0,#c0c0c0);
+color:var(--text-light);
+}
+
+body.light-mode .sidebar{
+background:rgba(255,255,255,0.3);
+}
+
+body.light-mode .sidebar a{
+color:#111;
+}
+
+body.light-mode .card{
+background:var(--card-light);
+color:#111;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+.sidebar{
+width:200px;
+padding:30px 15px;
+}
+.main{
+margin-left:220px;
+}
+}
+
+@media(max-width:600px){
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+display:flex;
+flex-direction:row;
+overflow-x:auto;
+}
+.main{
+margin-left:0;
+padding:20px;
+}
+.grid{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<h2>Integral Minds</h2>
+<a href="#hero">Home</a>
+<a href="#notes">Subjects</a>
+<a href="#contact">Contact</a>
+<button class="toggle-btn" onclick="toggleMode()">Dark/Light</button>
+</div>
+
+<div class="main">
+
+<!-- Hero Section -->
+<section id="hero" class="hero">
+<h1>Welcome to Integral Minds Notes</h1>
+<div id="typing"></div>
+</section>
+
+<!-- Notes Section -->
+<section id="notes">
+<h2 style="text-align:center; margin-bottom:30px;">Subjects</h2>
+<div class="grid">
+<div class="card" onclick="window.location.href='math.html'">Mathematics</div>
+<div class="card" onclick="window.location.href='physics.html'">Physics</div>
+<div class="card" onclick="window.location.href='chemistry.html'">Chemistry</div>
+<div class="card" onclick="window.location.href='computer.html'">Computer Science</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact" style="margin-top:50px; text-align:center;">
+<h2>Contact</h2>
+<p>Email: educationbypra330@gmail.com</p>
+<p>LinkedIn: linkedin.com/in/prakashshar00</p>
+<p>GitHub: github.com/prakashshar00</p>
+</section>
+
+</div>
+
+<script>
+// Typing Animation
+const text = "Free Notes for Class 11 & 12 Students. Explore Mathematics, Physics, Chemistry, and Computer Science units!";
+let i = 0;
+function typing(){
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,50);
+}
+}
+typing();
+
+// Dark/Light mode toggle
+function toggleMode(){
+document.body.classList.toggle("light-mode");
+}
+</script>
+
+</body>
+</html>
