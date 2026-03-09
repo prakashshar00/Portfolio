@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
 --bg1:#021d17;
 --bg2:#053d33;
@@ -30,30 +31,8 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* glow */
-body::before{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle,rgba(0,255,178,0.15),transparent 60%);
-top:-200px;
-left:-200px;
-z-index:-1;
-}
-
-body::after{
-content:"";
-position:fixed;
-width:500px;
-height:500px;
-background:radial-gradient(circle,rgba(0,255,178,0.1),transparent 60%);
-bottom:-200px;
-right:-200px;
-z-index:-1;
-}
-
 /* NAV */
+
 nav{
 display:flex;
 justify-content:center;
@@ -63,13 +42,11 @@ position:sticky;
 top:0;
 background:rgba(0,0,0,0.3);
 backdrop-filter:blur(20px);
-z-index:1000;
 }
 
 nav a{
 color:var(--text);
 text-decoration:none;
-transition:.3s;
 }
 
 nav a:hover{
@@ -77,6 +54,7 @@ color:var(--accent);
 }
 
 /* HERO */
+
 header{
 text-align:center;
 padding:140px 20px;
@@ -95,6 +73,8 @@ margin-top:20px;
 color:var(--soft);
 }
 
+/* typing */
+
 #typing{
 margin-top:20px;
 color:var(--soft);
@@ -112,7 +92,8 @@ max-width:900px;
 100%{border-color:transparent}
 }
 
-/* SECTION */
+/* SECTIONS */
+
 section{
 padding:120px 10%;
 opacity:0;
@@ -130,8 +111,12 @@ margin-bottom:40px;
 font-size:32px;
 }
 
-/* CARD */
+/* CARDS */
+
 .card{
+display:block;
+text-decoration:none;
+color:var(--text);
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(25px);
 border:1px solid rgba(0,255,178,0.2);
@@ -152,35 +137,8 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
-/* MODAL */
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-justify-content:center;
-align-items:center;
-}
-
-.modal-content{
-background:#062f28;
-padding:40px;
-border-radius:20px;
-max-width:700px;
-color:var(--soft);
-}
-
-.close{
-float:right;
-cursor:pointer;
-color:var(--accent);
-font-weight:bold;
-}
-
 /* FOOTER */
+
 footer{
 text-align:center;
 padding:40px;
@@ -188,10 +146,6 @@ border-top:1px solid rgba(255,255,255,0.1);
 color:var(--soft);
 }
 
-@media(max-width:768px){
-header h1{font-size:40px;}
-section{padding:80px 5%;}
-}
 </style>
 </head>
 
@@ -209,113 +163,178 @@ section{padding:80px 5%;}
 </nav>
 
 <header>
+
 <h1>Prakash Sharma</h1>
+
 <p>Data Science Learner | Research Thinker | Analytical Explorer</p>
+
 <p id="typing"></p>
+
 </header>
 
 <section id="about">
+
 <h2>Academic Identity</h2>
+
 <div class="card">
+
 I am an intellectually disciplined undergraduate focused on data science, structured thinking, research methodology and long-term knowledge development.
+
 </div>
+
 </section>
 
 <section id="learning">
+
 <h2>Learning Journey</h2>
+
 <div class="card">
+
 Python • Statistics • Linear Regression • Research Writing • Analytical Reasoning • Teaching & Leadership
+
 </div>
+
 </section>
 
 <section id="projects">
+
 <h2>Projects & Research</h2>
+
 <div class="grid">
+
 <div class="card">Linear Regression with Train-Test Split</div>
+
 <div class="card">Exploratory Data Analysis</div>
+
 <div class="card">Statistical Modeling Systems</div>
+
 </div>
+
 </section>
 
 <section id="thoughts">
+
 <h2>Thought Philosophy</h2>
+
 <div class="grid">
-<div class="card" onclick="openModal('article1')">Education Beyond Syllabus</div>
-<div class="card" onclick="openModal('article2')">Discipline & Intellectual Growth</div>
+
+<div class="card">Education Beyond Syllabus</div>
+
+<div class="card">Discipline & Intellectual Growth</div>
+
 </div>
+
 </section>
 
 <section id="insights">
+
 <h2>Insights Portal</h2>
+
 <div class="grid">
-<div class="card" onclick="openModal('insight1')">Data Visualization Case Study</div>
-<div class="card" onclick="openModal('insight2')">Research-Based Analysis Framework</div>
+
+<div class="card">Data Visualization Case Study</div>
+
+<div class="card">Research-Based Analysis Framework</div>
+
 </div>
+
 </section>
 
 <section id="integral-notes">
+
 <h2>Notes and Resources</h2>
 
 <div class="grid">
-<div class="card" onclick="openModal('note1')">Class 11 and 12</div>
-<div class="card" onclick="openModal('note2')">Secondary Level</div>
-<div class="card" onclick="openModal('note3')">Bachelor Level</div>
+
+<a href="class11.html" class="card">
+Class 11 and 12
+</a>
+
+<a href="secondary.html" class="card">
+Secondary Level
+</a>
+
+<a href="bachelor.html" class="card">
+Bachelor Level
+</a>
+
 </div>
 
 </section>
 
 <section id="contact">
+
 <h2>Contact</h2>
+
 <div class="card">
+
 Email: educationbypra330@gmail.com <br>
 LinkedIn: linkedin.com/in/prakashshar00 <br>
 GitHub: github.com/prakashshar00
+
 </div>
+
 </section>
 
 <footer>
-© 2026 Prakash Sharma | Stay happy Stay healthy 💚
-</footer>
 
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">X</span>
-<div id="modal-text"></div>
-</div>
-</div>
+© 2026 Prakash Sharma | Stay happy Stay healthy 💚
+
+</footer>
 
 <script>
 
 /* scroll animation */
+
 const sections=document.querySelectorAll("section");
+
 window.addEventListener("scroll",()=>{
+
 sections.forEach(sec=>{
+
 if(sec.getBoundingClientRect().top<window.innerHeight-100){
+
 sec.classList.add("visible");
+
 }
+
 });
+
 });
 
-/* modal */
-function openModal(id){
-const content={
-article1:"True education expands curiosity beyond classroom boundaries.",
-article2:"Discipline builds intellectual power and long-term mastery.",
-insight1:"Case study demonstrating structured data transformation into insight.",
-insight2:"Framework combining statistical logic with research precision.",
 
-note1:"Class 11 and 12 Mathematics, Physics and Statistics notes will be available here.",
-note2:"Secondary level study resources and exam preparation materials.",
-note3:"Bachelor level notes including Data Science, Statistics and Research materials."
-};
+/* typing intro */
 
-document.getElementById("modal-text").innerHTML=content[id];
-document.getElementById("modal").style.display="flex";
+const text = `Hello — I’m Prakash: a full-time learner, a relentless questioner, and a firm believer that ideas refined by data can change societies.
+
+By academic pursuit and personal conviction, I study data science — not merely to understand numbers, but to uncover patterns behind human behavior.
+
+Yet my intellectual home extends beyond datasets.
+
+I explore mathematics, philosophy, governance, and research.
+
+I think deeply, act deliberately, and aspire purposefully.
+
+And yes — at my core, I am from Nepal.`;
+
+let i = 0;
+let speed = 25;
+
+function typeWriter(){
+
+if(i < text.length){
+
+document.getElementById("typing").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typeWriter, speed);
+
 }
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
 }
+
+typeWriter();
 
 </script>
 
