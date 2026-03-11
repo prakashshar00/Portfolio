@@ -3,189 +3,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>My View Prakash Sharma</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
+    /* --- ORIGINAL STYLES + UPDATES --- */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f0fdf4;
+        margin: 0;
+        color: #333;
+    }
+    header {
+        background: linear-gradient(135deg, #bbf7d0, #dcfce7);
+        padding: 70px 20px;
+        text-align: center;
+    }
+    h1 { color: #14532d; margin: 0; }
+    h2.sanskrit { color: #166534; font-weight: 400; margin-top: 10px; font-size: 1.2rem; }
+    
+    .container { padding: 40px 10%; }
 
-body{
-font-family:Poppins;
-background:#f0fdf4;
-margin:0;
-}
+    /* --- NEW INTERACTIVE SECTION STYLES --- */
+    .interactive-zone {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+    .tab-btn {
+        padding: 10px 20px;
+        border: 2px solid #22c55e;
+        background: transparent;
+        color: #14532d;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+    .tab-btn.active {
+        background: #22c55e;
+        color: white;
+    }
+    .q-card {
+        display: none;
+        max-width: 700px;
+        margin: 0 auto;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    .q-card.active { display: block; }
+    
+    .question-item {
+        background: #f9fafb;
+        margin: 12px 0;
+        padding: 18px;
+        border-radius: 12px;
+        cursor: pointer;
+        border-left: 5px solid #22c55e;
+        text-align: left;
+        transition: 0.3s;
+    }
+    .question-item:hover {
+        background: #ecfdf5;
+        transform: translateX(5px);
+    }
+    .question-text {
+        font-weight: 600;
+        color: #14532d;
+        display: block;
+    }
+    .answer {
+        display: none;
+        padding-top: 12px;
+        color: #4b5563;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 10px;
+    }
 
-header{
-background:linear-gradient(135deg,#bbf7d0,#dcfce7);
-padding:70px;
-text-align:center;
-}
+    /* --- ORIGINAL GRID STYLES --- */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        transition: 0.4s;
+        cursor: pointer;
+    }
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 40px rgba(34,197,94,0.2);
+    }
+    .card h3 { color: #14532d; margin-top: 0; font-size: 1.1rem; }
+    .card p { color: #555; line-height: 1.6; }
 
-h1{
-color:#14532d;
-}
+    .subscribe {
+        margin-top: 80px;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    input { padding: 12px; width: 250px; border-radius: 25px; border: 1px solid #ccc; margin-bottom: 10px; }
+    button { padding: 12px 25px; background: #22c55e; border: none; color: white; border-radius: 25px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #16a34a; }
+    
+    footer { margin-top: 80px; background: #bbf7d0; padding: 30px; text-align: center; color: #14532d; }
 
-.container{
-padding:60px 10%;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-}
-
-.card{
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-transition:0.4s;
-cursor:pointer;
-}
-
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 15px 40px rgba(34,197,94,0.2);
-}
-
-.card h3{
-color:#14532d;
-}
-
-.card p{
-color:#555;
-}
-
-.subscribe{
-margin-top:80px;
-background:white;
-padding:40px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-}
-
-input{
-padding:12px;
-width:250px;
-border-radius:25px;
-border:1px solid #ccc;
-margin-right:10px;
-}
-
-button{
-padding:12px 25px;
-background:#22c55e;
-border:none;
-color:white;
-border-radius:25px;
-cursor:pointer;
-}
-
-button:hover{
-background:#16a34a;
-}
-
-footer{
-margin-top:80px;
-background:#bbf7d0;
-padding:20px;
-text-align:center;
-}
-
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>MY THOUGHT, MY EXPRESSION </h1>
-<h2>आत्मनः प्रतिकूलानि परेषां न समाचरेत् </h2>
+    <h1>MY THOUGHT, MY EXPRESSION</h1>
+    <h2 class="sanskrit">आत्मनः प्रतिकूलानि परेषां न समाचरेत्</h2>
 </header>
 
 <div class="container">
+    
+    <section class="interactive-zone">
+        <h2 style="margin-bottom: 25px; color: #14532d;">Interactive Self-Portrait</h2>
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('know-me')">1. Know Me</button>
+            <button class="tab-btn" onclick="showTab('suggestions')">2. Suggestions</button>
+            <button class="tab-btn" onclick="showTab('favorites')">3. Favorites</button>
+        </div>
 
-<div class="grid">
+        <div id="know-me" class="q-card active">
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What is one thing people usually misunderstand about you?</span>
+                <div class="answer">People often take my silence for being aloof, but usually, I'm just observing and processing data patterns in my head!</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What motivates you the most in life?</span>
+                <div class="answer">The ability to turn complex chaos into simple, actionable insights.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What is a habit you are proud of?</span>
+                <div class="answer">Writing down at least one thought every day to keep my internal compass aligned.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">If someone describes you in three words, what would they be?</span>
+                <div class="answer">Analytical, Expressive, and Resilient.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What makes you different from most people?</span>
+                <div class="answer">I bridge the gap between cold data analytics and warm, philosophical human thoughts.</div>
+            </div>
+        </div>
 
-<!-- LATEST ARTICLE -->
-<div class="card" onclick="location.href='article1.html'">
-<h3>- Wed, March 11, 2026 -</h3>
-<p>विद्वत्वं च नृपत्वं च नैव तुल्यं कदाचन । स्वदेशे पुज्यते राजा विद्वान् सर्वत्र पुज्यते ॥ 
-         "Its means the the king is workship only in its area 
-         but the wiseful person is always get space all around the world.
-         ।</p>
-</div>
-<div class="card" onclick="location.href='article1.html'">
-<h3>Wed, 11 march,2026 (Sosparsa)</h3>
-<p>एकजना मानिसले गुरुलाई सोधे," म खुसी हुन चाहन्छु। "
-गुरुले जवाफ दिए पहिले 'म'लाई हटाउ त्यो अहंकार हो।
-त्यसपछि 'चाहन्छु'लाई हटाउ त्यो इच्छा हो। 
-अब हेर त तिमीसँग खुसी मात्र बाँकी छ  ।</p>
-</div>
-<div class="card" onclick="location.href='article1.html'">
-<h3>Ma mailai study garda yo ayo </h3>
-<p>केही मानिसलाई सुनिदिने र बुझिदिने अर्को एउटा मान्छे भेट्न 
-कहिलेकाहीँ केही महिना केही वर्ष मात्र होइन पुरै एक जुनी पनि लाग्न सक्छ।</p>
-</div>
+        <div id="suggestions" class="q-card">
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What book would you suggest everyone should read once?</span>
+                <div class="answer">"Man's Search for Meaning" by Viktor Frankl—it changes how you view suffering and purpose.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Which skill should every student learn today?</span>
+                <div class="answer">Data literacy. In the future, not knowing how to read data will be like not knowing how to read text.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What is the best advice you have received?</span>
+                <div class="answer">"Don't do to others what you wouldn't want done to yourself" (The Sanskrit quote in my header).</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What advice would you give to your younger self?</span>
+                <div class="answer">"Be patient. Your unique combination of interests will eventually make sense."</div>
+            </div>
+        </div>
 
-<div class="card" onclick="location.href='article2.html'">
-<h3>Post Election Feeling</h3>
-<p>शब्द नै आएन। सबै RASOPA लाई बधाई, यिनीहरूले केही नगरे नी कोही राम्रा छन्,
-         एकदिन यिनीहरू लाई पत्तासाप पार्छन् भन्ने आस भरोसा थियो, 
-  तर अब यो बहुमत सफल नभए कुनै आसा बाँकी हुने छैन। बाचा पत्रमा भन्या कुरा पूरा गर्नु होला।
-        यो हर्ष सँगै मैले धेरै कुरा सिकेको छु, केही जिम्मेवारी थपिएको झै लागेको छ, 
-  suprize गिफ्ट पाएँ jai लागेको छ। बढी उसाहित पो भएँ क्या हो। भयो अरु कुरा आफैँ मनन गर्छु। 
-        कतै जम्का भेट हुँदा तार्किक प्रश्न, जिज्ञासा र समाधान दिन सक्ने बन्न सकु।
+        <div id="favorites" class="q-card">
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Person who inspires you</span>
+                <div class="answer">Anyone who remains humble despite reaching the peak of their wisdom.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Place</span>
+                <div class="answer">Somewhere quiet where I can see the horizon, ideally with a notebook in hand.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Quote</span>
+                <div class="answer">"Knowledge is proud that he has learned so much; Wisdom is humble that he knows no more."</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Time of the Day</span>
+                <div class="answer">The "Golden Hour" just before sunset, when everything looks like a painting.</div>
+            </div>
+        </div>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">(Click a question to slide open the answer)</p>
+    </section>
 
-           परीक्षा आउँदाको अत्यास जस्तै महसुस भएको छ।</p>
-</div>
+    <div class="grid">
+        <div class="card" onclick="location.href='article1.html'">
+            <h3>- Wed, March 11, 2026 -</h3>
+            <p>विद्वत्वं च नृपत्वं च नैव तुल्यं कदाचन । स्वदेशे पुज्यते राजा विद्वान् सर्वत्र पुज्यते ॥ <br>
+            "It means the king is worshipped only in his area but the wise person is respected everywhere."</p>
+        </div>
 
-<div class="card" onclick="location.href='article1.html'">
-<h3>Have you ever feel i should rather use right hand,shit wala</h3>
-<p>दाइँने हात र देब्रे हात मा त भेदवाद छ,
-      तिमी समानता बनाउँछु ,
-         न्याय दिलाउँछु,
-         भन्दै नहिँड न,
-        आफू राम्रो बन ,
-        आफ्नो काम गर ।</p>
-</div>
-  <div class="card" onclick="location.href='https://prakashshar00.blogspot.com/2026/03/blog-post.html'">
-<h3>MY Identity</h3>
-<p>Who am i actually? prakash ? Its my name. 
-  Boy, its my gender. 
-  Data Analytics, Its my profession. 
-</p>
-</div>
+        <div class="card" onclick="location.href='article1.html'">
+            <h3>Wed, 11 March, 2026 (Sosparsa)</h3>
+            <p>एकजना मानिसले गुरुलाई सोधे," म खुसी हुन चाहन्छु। " गुरुले जवाफ दिए पहिले 'म'लाई हटाउ त्यो अहंकार हो...</p>
+        </div>
 
-</div>
+        <div class="card" onclick="location.href='article2.html'">
+            <h3>Post Election Feeling</h3>
+            <p>शब्द नै आएन। सबै RASOPA लाई बधाई... तर अब यो बहुमत सफल नभए कुनै आसा बाँकी हुने छैन। बाचा पत्रमा भन्या कुरा पूरा गर्नु होला।</p>
+        </div>
 
+        <div class="card" onclick="location.href='https://prakashshar00.blogspot.com/2026/03/blog-post.html'">
+            <h3>MY Identity</h3>
+            <p>Who am I actually? Prakash Sharma. Boy. Data Analytics Professional.</p>
+        </div>
+        
+        <div class="card" onclick="location.href='article1.html'">
+            <h3>Right Hand vs Left Hand</h3>
+            <p>दाइँने हात र देब्रे हात मा त भेदवाद छ, तिमी समानता बनाउँछु भन्दै नहिँड, आफू राम्रो बन।</p>
+        </div>
+    </div>
 
-<!-- SUBSCRIBE -->
-
-<div class="subscribe">
-
-<h2>Subscribe for New Articles</h2>
-<p>Get notified whenever a new article is published.</p>
-
-<input type="email" placeholder="Enter your email">
-<button>Subscribe</button>
-
-</div>
-
+    <div class="subscribe">
+        <h2>Subscribe for New Articles</h2>
+        <p>Get notified whenever a new article is published.</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe Now</button>
+    </div>
 </div>
 
 <footer>
-© 2026 Prakash Sharma
+    © 2026 Prakash Sharma | Data Analytics & Thoughts
 </footer>
 
+<script>
+    // Function to switch between Tabs
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.q-card').forEach(card => card.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Function to show/hide the answer
+    function toggleAns(element) {
+        const ans = element.querySelector('.answer');
+        const allAnswers = document.querySelectorAll('.answer');
+        
+        // Check if it's already open
+        const isOpen = ans.style.display === 'block';
+
+        // Close all other answers first for a clean look
+        allAnswers.forEach(a => a.style.display = 'none');
+
+        // Toggle the clicked one
+        ans.style.display = isOpen ? 'none' : 'block';
+    }
+</script>
+
 </body>
-
 </html>
-
-
-
-
-
-
