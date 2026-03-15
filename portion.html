@@ -7,21 +7,71 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
     /* --- ORIGINAL STYLES + UPDATES --- */
+    :root {
+        --primary: #22c55e;
+        --dark-green: #14532d;
+        --light-bg: #f0fdf4;
+    }
     body {
         font-family: 'Poppins', sans-serif;
-        background: #f0fdf4;
+        background: var(--light-bg);
         margin: 0;
         color: #333;
+        overflow-x: hidden;
     }
     header {
         background: linear-gradient(135deg, #bbf7d0, #dcfce7);
         padding: 70px 20px;
         text-align: center;
     }
-    h1 { color: #14532d; margin: 0; }
+    h1 { color: var(--dark-green); margin: 0; }
     h2.sanskrit { color: #166534; font-weight: 400; margin-top: 10px; font-size: 1.2rem; }
     
     .container { padding: 40px 10%; }
+
+    /* --- NEW QUOTES BOX STYLES --- */
+    .quotes-box {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 30px; /* Reduced margin to bring it closer to tabs */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation transition */
+        position: relative;
+        overflow: hidden; /* For inner glow animation */
+    }
+    .quotes-box:hover {
+        transform: translateY(-5px); /* Animation effect */
+        box-shadow: 0 15px 40px rgba(34,197,94,0.1); /* Animation effect */
+    }
+    .quotes-box::before { /* Inner glow hover animation */
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle, rgba(34,197,94,0.05) 0%, rgba(255,255,255,0) 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+    }
+    .quotes-box:hover::before {
+        opacity: 1;
+    }
+    #quote-text {
+        color: var(--dark-green);
+        font-size: 2rem; /* Big letters */
+        font-weight: 600;
+        font-style: italic;
+        line-height: 1.3;
+        position: relative;
+        z-index: 2; /* To be above glow */
+        display: inline-block; /* For typing effect */
+        animation: typing 3s steps(40) 1s normal both, /* typing animation */
+                   blink 0.5s step-end infinite alternate; /* cursor blink animation */
+        white-space: nowrap; /* Keep quote on one line for typing effect */
+        overflow: hidden; /* Hide overflowing characters for typing effect */
+        border-right: 3px solid; /* Typing cursor */
+    }
 
     /* --- NEW INTERACTIVE SECTION STYLES --- */
     .interactive-zone {
@@ -41,16 +91,16 @@
     }
     .tab-btn {
         padding: 10px 20px;
-        border: 2px solid #22c55e;
+        border: 2px solid var(--primary);
         background: transparent;
-        color: #14532d;
+        color: var(--dark-green);
         border-radius: 30px;
         cursor: pointer;
         font-weight: 600;
         transition: 0.3s;
     }
     .tab-btn.active {
-        background: #22c55e;
+        background: var(--primary);
         color: white;
     }
     .q-card {
@@ -67,7 +117,7 @@
         padding: 18px;
         border-radius: 12px;
         cursor: pointer;
-        border-left: 5px solid #22c55e;
+        border-left: 5px solid var(--primary);
         text-align: left;
         transition: 0.3s;
     }
@@ -77,7 +127,7 @@
     }
     .question-text {
         font-weight: 600;
-        color: #14532d;
+        color: var(--dark-green);
         display: block;
     }
     .answer {
@@ -108,7 +158,7 @@
         transform: translateY(-6px);
         box-shadow: 0 15px 40px rgba(34,197,94,0.2);
     }
-    .card h3 { color: #14532d; margin-top: 0; font-size: 1.1rem; }
+    .card h3 { color: var(--dark-green); margin-top: 0; font-size: 1.1rem; }
     .card p { color: #555; line-height: 1.6; }
 
     .subscribe {
@@ -120,14 +170,24 @@
         box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
     input { padding: 12px; width: 250px; border-radius: 25px; border: 1px solid #ccc; margin-bottom: 10px; }
-    button { padding: 12px 25px; background: #22c55e; border: none; color: white; border-radius: 25px; cursor: pointer; font-weight: 600; }
+    button { padding: 12px 25px; background: var(--primary); border: none; color: white; border-radius: 25px; cursor: pointer; font-weight: 600; }
     button:hover { background: #16a34a; }
     
-    footer { margin-top: 80px; background: #bbf7d0; padding: 30px; text-align: center; color: #14532d; }
+    footer { margin-top: 80px; background: #bbf7d0; padding: 30px; text-align: center; color: var(--dark-green); }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+    /* Typing animation */
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+    /* Cursor blink animation */
+    @keyframes blink {
+        from, to { border-color: transparent }
+        50% { border-color: orange; }
     }
 </style>
 </head>
@@ -140,8 +200,12 @@
 
 <div class="container">
     
+    <section class="quotes-box">
+        <p id="quote-text">Your thoughts matter...</p>
+    </section>
+
     <section class="interactive-zone">
-        <h2 style="margin-bottom: 25px; color: #14532d;">Interactive Self-Portrait</h2>
+        <h2 style="margin-bottom: 25px; color: var(--dark-green);">Interactive Self-Portrait</h2>
         <div class="tab-container">
             <button class="tab-btn active" onclick="showTab('know-me')">1. Know Me</button>
             <button class="tab-btn" onclick="showTab('suggestions')">2. Suggestions</button>
@@ -152,18 +216,18 @@
             <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">What is one thing people usually misunderstand about you?</span>
                 <div class="answer">People often take my silence for being aloof, but usually, I'm just observing and processing data patterns in my head!</div>
+            </div> 
+             <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What motivates you the most in the life??</span>
+                <div class="answer">Good times come after suffering bad times.</div>
             </div>
-            <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">What motivates you the most in life?</span>
-                <div class="answer">The good times come after suffering bad times.</div>
-            </div>
-            <div class="question-item" onclick="toggleAns(this)">
+             <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">What is a habit you are proud of?</span>
-                <div class="answer">Writing down at least one thought every day to keep my internal compass aligned.</div>
+                <div class="answer">Writing down at least one thought everyday to keep my internal compass aligned.</div>
             </div>
-            <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">If someone describes you in three words, what would they be?</span>
-                <div class="answer">Analytical, Curious, Responsible.</div>
+             <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">If someone descirbe you in three words, what would they be?</span>
+                <div class="answer">Analytical ,Curious, Responsible !</div>
             </div>
             <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">What makes you different from most people?</span>
@@ -177,35 +241,35 @@
                 <div class="answer">"Man's Search for Meaning" by Viktor Frankl—it changes how you view suffering and purpose.</div>
             </div>
             <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">Which skill should every student learn today?</span>
-                <div class="answer">Data literacy. In the future, not knowing how to read data will be like not knowing how to read text.</div>
-            </div>
-            <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">What is the best advice you have received?</span>
-                <div class="answer">"Don't do to others what you wouldn't want done to yourself" .</div>
-            </div>
-            <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">What advice would you give to your younger self?</span>
                 <div class="answer">"Be patient. Your unique combination of interests will eventually make sense."</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What skill should every student learn today?</span>
+                <div class="answer">"Data literacy, in the future, not knowing how to read data will be like not knowing how to read text."</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">What is the best advice you have received</span>
+                <div class="answer">"Don't do to others what you wouldn't want done to yourself"</div>
             </div>
         </div>
 
         <div id="favorites" class="q-card">
             <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">Favorite Person who inspires you</span>
-                <div class="answer">Those who think i can not do anything.</div>
-            </div>
-            <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">Favorite Place</span>
-                <div class="answer"> I enjoy where i am today, Kathmandu.</div>
-            </div>
-            <div class="question-item" onclick="toggleAns(this)">
-                <span class="question-text">Favorite Quote</span>
-                <div class="answer">"Time teaches us everything but not on time."</div>
+                <div class="answer">Those who think i cannot do anaything. </div>
             </div>
             <div class="question-item" onclick="toggleAns(this)">
                 <span class="question-text">Favorite Time of the Day</span>
                 <div class="answer">The "Golden Hour" just before sunset, when everything looks like a painting.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Place</span>
+                <div class="answer">I enjoy where i am today, Kathmandu.</div>
+            </div>
+            <div class="question-item" onclick="toggleAns(this)">
+                <span class="question-text">Favorite Quotes.</span>
+                <div class="answer">Time teaches us everything but not on time.</div>
             </div>
         </div>
         <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">(Click a question to slide open the answer)</p>
@@ -218,30 +282,15 @@
             "It means the king is worshipped only in his area but the wise person is respected everywhere."</p>
         </div>
 
-        <div class="card" onclick="location.href='article1.html'">
-            <h3>Wed, 11 March, 2026 (Sosparsa)</h3>
-            <p>एकजना मानिसले गुरुलाई सोधे," म खुसी हुन चाहन्छु। " गुरुले जवाफ दिए पहिले 'म'लाई हटाउ त्यो अहंकार हो...</p>
-        </div>
-
-        <div class="card" onclick="location.href='article2.html'">
-            <h3>Post Election Feeling</h3>
-            <p>शब्द नै आएन। सबै RASOPA लाई बधाई... तर अब यो बहुमत सफल नभए कुनै आसा बाँकी हुने छैन। बाचा पत्रमा भन्या कुरा पूरा गर्नु होला।</p>
-        </div>
-
         <div class="card" onclick="location.href='https://prakashshar00.blogspot.com/2026/03/blog-post.html'">
             <h3>MY Identity</h3>
             <p>Who am I actually? Prakash Sharma. Boy. Data Analytics Professional.</p>
         </div>
         
-        <div class="card" onclick="location.href='article1.html'">
-            <h3>Right Hand vs Left Hand</h3>
-            <p>दाइँने हात र देब्रे हात मा त भेदवाद छ, तिमी समानता बनाउँछु भन्दै नहिँड, आफू राम्रो बन।</p>
-        </div>
     </div>
 
     <div class="subscribe">
         <h2>Subscribe for New Articles</h2>
-        <p>Get notified whenever a new article is published.</p>
         <input type="email" placeholder="Enter your email">
         <button>Subscribe Now</button>
     </div>
@@ -252,6 +301,31 @@
 </footer>
 
 <script>
+    // Quotes Array
+    const quotes = [
+        "The biggest crime in life is to live",
+        "an average life even after knowing",
+        "your potential ...."
+        
+    ];
+    let quoteIndex = 0;
+    const quoteElement = document.getElementById('quote-text');
+
+    // Function to change quote with typing animation
+    function changeQuote() {
+        quoteElement.style.animation = 'none'; // reset animation
+        quoteElement.offsetHeight; /* trigger reflow */
+        quoteElement.innerText = quotes[quoteIndex];
+        quoteElement.style.animation = null; // re-apply animation
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+    }
+
+    // Change quote every 5 seconds
+    setInterval(changeQuote, 5000);
+    // Initial quote change
+    changeQuote();
+
+
     // Function to switch between Tabs
     function showTab(tabId) {
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -279,6 +353,3 @@
 
 </body>
 </html>
-
-
-
