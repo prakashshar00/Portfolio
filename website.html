@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakash Sharma | Personal Portfolio</title>
+    <!-- Google Fonts for Editorial / Professional Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f2efe9;
+            --paper-color: #fcfbf9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --accent-color: #2b2b2b;
+            --border-color: #d1cdc4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Paper Texture & Background Effect */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0),
+                linear-gradient(to right, rgba(0,0,0,0.015), rgba(0,0,0,0.015));
+            background-size: 24px 24px, 100% 100%;
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        /* Main Paper Sheet Container */
+        .paper-sheet {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--paper-color);
+            padding: 60px 70px;
+            border: 1px solid var(--border-color);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.05),
+                0 1px 3px rgba(0, 0, 0, 0.03);
+            position: relative;
+        }
+
+        /* Top Navigation Bar */
+        nav {
+            border-bottom: 2px solid var(--text-primary);
+            padding-bottom: 18px;
+            margin-bottom: 50px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 18px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
+            padding-bottom: 2px;
+        }
+
+        nav a:hover {
+            color: #777;
+            border-bottom: 1px solid #777;
+        }
+
+        /* Headers & Typography */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 42px;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        /* Hero Header Section */
+        .hero {
+            text-align: center;
+            padding: 20px 0 50px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 50px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        /* Content Sections */
+        section {
+            margin-bottom: 60px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* Paper-Framed Image Style */
+        .paper-frame {
+            position: relative;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .paper-frame:hover {
+            filter: grayscale(0%);
+            transform: translateY(-2px);
+        }
+
+        .paper-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #eee;
+        }
+
+        /* Interactive Clickable Photo */
+        .clickable-photo {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .clickable-photo .photo-caption {
+            text-align: center;
+            font-size: 12px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Cards Style */
+        .card {
+            background: #ffffff;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--text-primary);
+        }
+
+        .card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        /* Interactive Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 0;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #444;
+        }
+
+        /* Contact Details */
+        .contact-list p {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .contact-list strong {
+            color: var(--text-primary);
+            width: 120px;
+            display: inline-block;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 768px) {
+            .paper-sheet {
+                padding: 30px 20px;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                gap: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Textured Paper Sheet -->
+    <div class="paper-sheet">
+
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="#about">About me</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#job-position">Job position</a>
+            <a href="#integral-minds">Integral Mind</a>
+            <a href="#learn-im">Learn I'M</a>
+            <a href="#volunteer">Volunteer work</a>
+            <a href="#contact">Get in touch</a>
+        </nav>
+
+        <!-- Header / Hero Section -->
+        <header class="hero">
+            <h1>Prakash Sharma (bitan)</h1>[cite: 1]
+            <p class="hero-subtitle">www.prakashsharma21.com.np</p>[cite: 1]
+        </header>
+
+        <!-- About Me Section -->
+        <section id="about" class="grid-2">
+            <div class="paper-frame">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Prakash Sharma Profile Photo">
+            </div>
+            <div>
+                <h2>About Me</h2>[cite: 2]
+                <p>I'm Prakash Sharma, a Data Science student from Nepal, a curious learner, and a relentless questioner. I'm passionate about discovering patterns in data and understanding the deeper connections between human behavior, society, and progress.</p>[cite: 2]
+                <p>Beyond data science, my interests span mathematics, physics, philosophy, psychology, diplomacy, and leadership. I enjoy exploring both Eastern wisdom and Western reasoning, seeking a balance between logic and meaning.</p>[cite: 2]
+                <p>I believe in evidence, integrity, and continuous learning. For me, education is not just about gaining knowledge but about developing the ability to think critically, act responsibly, and contribute meaningfully to society.</p>[cite: 2]
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="grid-2">
+            <div>
+                <h2>Education</h2>[cite: 3]
+                <h3>British Universities</h3>[cite: 3]
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis. Vestibulum at dui sit amet leo accumsan pulvinar.</p>[cite: 3]
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis. Vestibulum at dui sit amet leo accumsan pulvinar.</p>[cite: 3]
+            </div>
+            <div class="paper-frame">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="University Architecture">[cite: 3]
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Experience</h2>[cite: 4]
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 4]
+                </div>
+                <div class="card">
+                    <div class="card-number">02</div>[cite: 4]
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 4]
+                </div>
+                <div class="card">
+                    <div class="card-number">03</div>[cite: 4]
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 4]
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Position Section -->
+        <section id="job-position">
+            <h2>Job Position</h2>[cite: 5]
+            <h3>Liceria & Co</h3>[cite: 5]
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis. Vestibulum at dui sit amet leo accumsan pulvinar.</p>[cite: 5]
+        </section>
+
+        <!-- Integral Minds Section (Photo Navigates to Learn I'M Page/Section) -->
+        <section id="integral-minds" class="grid-2">
+            <div>
+                <h2>Integral Mind</h2>[cite: 6]
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis. Vestibulum at dui sit amet leo accumsan pulvinar.</p>[cite: 6]
+                <p style="font-style: italic; color: #1a1a1a;"><strong>Interactive Navigation:</strong> Click on the adjacent photo to navigate to the next page / section.</p>
+            </div>
+            <div>
+                <!-- Clickable Image wrapped in a hyperlink targeting #learn-im -->
+                <a href="#learn-im" class="clickable-photo" title="Click to navigate to Learn I'M">
+                    <div class="paper-frame">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Integral Mind - Click to Navigate">
+                    </div>
+                    <div class="photo-caption"> Click Photo to Go to Next Section ↓</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Learn I'M Section -->
+        <section id="learn-im" class="grid-2">
+            <div>
+                <h2>Learn I'M</h2>[cite: 7]
+                <p>Explore coding tutorials, data science workflows, and philosophical perspectives on my channel.</p>
+                <a href="https://www.youtube.com" target="_blank" class="btn">Link My YouTube Channel</a>[cite: 7]
+            </div>
+            <div class="paper-frame">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Coding Workstation">[cite: 7]
+            </div>
+        </section>
+
+        <!-- Volunteer Work Section -->
+        <section id="volunteer">
+            <h2>Volunteer Work</h2>[cite: 8]
+            <div class="grid-2" style="margin-bottom: 30px;">
+                <div class="paper-frame">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80" alt="Volunteer Activity 1">[cite: 8]
+                </div>
+                <div class="paper-frame">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Volunteer Activity 2">[cite: 8]
+                </div>
+            </div>
+            <div class="grid-3">
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 8]
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 8]
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit et lectus eu imperdiet. Donec iaculis sapien euismod, pharetra eros vitae, pulvinar turpis.</p>[cite: 8]
+                </div>
+            </div>
+        </section>
+
+        <!-- Get In Touch Section -->
+        <section id="contact" class="grid-2" style="margin-bottom: 0;">
+            <div class="paper-frame">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Contact Photo">[cite: 9]
+            </div>
+            <div>
+                <h2>Get In Touch</h2>[cite: 9]
+                <div class="contact-list">
+                    <p><strong>Email:</strong> hello@reallygreatsite.com</p>[cite: 9]
+                    <p><strong>Website:</strong> www.reallygreatsite.com</p>[cite: 9]
+                    <p><strong>Phone:</strong> 123-456-7890</p>[cite: 9]
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
